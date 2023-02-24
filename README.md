@@ -5,7 +5,11 @@
 In this exercise your task is to create a simple shopping wish list app - no backend required.
 Exactly how you implement and design this is up to you - but your solution should be implemented in the files `index.html`, `wishlist.ts` (that gets transpiled to `/dist/wishlist.js`) and `style/wishlist.css` in the `src` folder. You may use the screenshot at the bottom of this page as inspiration.
 
+## Running the project
 There is a script already set up for you to get started developing quickly. Get going with `npm run dev`. Read the scripts to understand what it's doing and which dependencies it's using in order for you to get up and running this quickly.
+
+## Running the tests (cypress)
+Run `npm run dev` and `npm run test` in two different terminal windows. You can also run `npm run dev` and `npx cypress open` instead to see the tests visually instead of on console
 
 Take care reading the UI and Technical specifications below as they are in a different format to before, they follow the [RFC2119](<https://www.ietf.org/rfc/rfc2119.txt>) specification.
 
@@ -49,7 +53,7 @@ We will only run tests that enforce these rules, but we may run _more_ tests tha
 
 - Check the console, make sure it's clean before sending in the code (cypress will help you with this too!)
 - Keep your code modular (build small functions, think that each function should have one single responsibility)
-- Use modern JavaScript
+- Use TypeScript
 - Think about naming your variables and functions in a way that make the code self-documenting
 - Use consistent naming (in other words, use BEM)
 - Use semantic html (e.g use the form element)
