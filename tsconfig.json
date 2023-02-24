@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "sourceMap": true,
+    "target": "ES2015",
+    "outDir": "src/dist",
+    "lib": ["DOM"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "src/**/*.test.ts"],
+
+}
