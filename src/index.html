@@ -4,13 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>&lt;/salt&gt; :: Shopping wish list</title>
+  <title>Shopping WishList</title>
   <link rel="stylesheet" type="text/css" href="./style/wishlist.css">
   <script defer src="./dist/wishlist.js"></script>
 </head>
 
 <body>
-  <!-- Add your markup here -->
+  <main>
+    <h1>WISHLIST</h1>
+    <form class="wishlist-form">
+      <h2>REGISTER NEW ITEM</h2>
+      <div class="form-group">
+        <label for="title-input">TITLE</label>
+        <input type="text" data-testid="txtCardTitle" id="title-input" required />
+      </div>
+      <div class="form-group">
+        <label for="description-input">DESCRIPTION</label>
+        <textarea id="description-input" required></textarea>
+      </div>
+      <button type="submit" id="add-button" data-testid="btnAddCard">ADD TO WSHLIST</button>
+    </form>
+    <div class="wishlist-container"></div>
+  </main>
+  <script src="script.js" data-testid="cardList"></script>
 </body>
 
 </html>
