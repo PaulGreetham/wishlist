@@ -6,7 +6,7 @@ I created a shopping wishlist app that enables the user to add an item by add a 
 
 ### Technical information
 
-- the shopping wish list is in a state object and _NOT_ in the DOM, which renders the view based on the stat
+- the shopping wish list is in a state object and _NOT_ in the DOM, which renders the view based on the state
 - uses Semantic html elements
 - uses a clear naming strategy for css and class names
 - uses BEM
