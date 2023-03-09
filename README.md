@@ -15,8 +15,13 @@ I created a shopping wishlist app that enables the user to add an item by add a 
 
 ### Project Aims
 
-I created this project:
-- to use state management to control the UI
-- use CSS transition and box shadow (on hover) to create a dynamic feel
-- use the cool teal/purple color palate
+I created this project to:
+- use state management to control the UI
+- experiment with CSS transition and box shadow (on hover) to create a dynamic feel
+- use the cool teal/purple color palate combo
 - practice responsive design
+- use Netlify to deploy directly from GitHub pushes
+
+### Link to Shopping WishList App
+
+Click here to see and use app: https://your-wishlist.netlify.app/
