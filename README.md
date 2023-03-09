@@ -1,28 +1,22 @@
-# WishList App
+# Shopping WishList App
 
-## Shopping Wish list
+## About
 
-A wish list app that allows users to:
-
-1. add an item
-2. mark an item as 'done'
-3. toggle between 'done' and 'not done'
-4. delete the item
-
-
-
-In this exercise your task is to create a simple shopping wish list app - no backend required.
-Exactly how you implement and design this is up to you - but your solution should be implemented in the files `index.html`, `wishlist.ts` (that gets transpiled to `/dist/wishlist.js`) and `style/wishlist.css` in the `src` folder. You may use the screenshot at the bottom of this page as inspiration.
-
-
-
+I created a shopping wishlist app that enables the user to add an item by add a 'title' and 'description' and clicking the 'add to wishlist' button. This then creates a new item card that can be toggled to either 'done' or 'not done' as well as deleted when 'done'. When the card is 'done' it is visually different and can be easily identifed. A new card item is added to the top of the list; when toggled done, it goes to the bottom of the list.
 
 ### Technical information
 
-- the shopping wish list is in a state object and _NOT_ in the DOM, which renders the view based on the state.
-- uses Semantic html elements.
-- uses a clear naming strategy for css and class names.
-- uses BEM.
-- is made with a mobile first approach.
-- persists the state in [localstorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
+- the shopping wish list is in a state object and _NOT_ in the DOM, which renders the view based on the stat
+- uses Semantic html elements
+- uses a clear naming strategy for css and class names
+- uses BEM
+- is made with a mobile first approach
 
+
+### Project Aims
+
+I created this project:
+- to use state management to control the UI
+- use CSS transition and box shadow (on hover) to create a dynamic feel
+- use the cool teal/purple color palate
+- practice responsive design
