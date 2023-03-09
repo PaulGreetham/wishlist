@@ -1,112 +1,90 @@
 "use strict";
-
 const state = {
-  items: [],
+    items: [],
 };
-
-const container = document.querySelector(".wishlist-container");
-const form = document.querySelector(".wishlist-form");
-const titleInput = document.querySelector("#title-input");
-const descriptionInput = document.querySelector("#description-input");
-
-function saveStateToLocalStorage(state) {
-  localStorage.setItem("wishlistState", JSON.stringify(state));
+function saveStateToLocalStorage(wishlistState) {
+    localStorage.setItem('wishlistState', JSON.stringify(wishlistState));
 }
-
 function loadStateFromLocalStorage() {
-  const stateJSON = localStorage.getItem("wishlistState");
-  return stateJSON ? JSON.parse(stateJSON) : null;
+    const stateJSON = localStorage.getItem('wishlistState');
+    if (stateJSON) {
+        return JSON.parse(stateJSON);
+    }
+    return null;
 }
-
 function render() {
-  container.innerHTML = "";
-
-  state.items.forEach((item, index) => {
-    const { title, description, done } = item;
-
-    const card = document.createElement("button");
-    card.classList.add("wishlist-card", done && "done");
-
-    const cardContent = document.createElement("div");
-    cardContent.classList.add("card-content");
-
-    const titleEl = document.createElement("h3");
-    titleEl.textContent = title;
-
-    const descriptionEl = document.createElement("p");
-    descriptionEl.textContent = description;
-
-    cardContent.appendChild(titleEl);
-    cardContent.appendChild(descriptionEl);
-    card.appendChild(cardContent);
-
-    const toggleButton = createButton(
-      done ? "Not Done" : "Done",
-      () => toggleDone(index)
-    );
-
-    const removeButton = createButton("Remove", () => removeItem(index));
-
-    card.appendChild(toggleButton);
-    card.appendChild(removeButton);
-    container.appendChild(card);
-  });
+    const container = document.querySelector('.wishlist-container');
+    container.innerHTML = '';
+    state.items.forEach((item, index) => {
+        const card = document.createElement('btnAddCard');
+        card.classList.add('wishlist-card');
+        if (item.done) {
+            card.classList.add('done');
+        }
+        const cardContent = document.createElement('txtCardTitle');
+        cardContent.classList.add('card-content');
+        const title = document.createElement('h3');
+        title.textContent = item.title;
+        const description = document.createElement('p');
+        description.textContent = item.description;
+        cardContent.appendChild(title);
+        cardContent.appendChild(description);
+        card.appendChild(cardContent);
+        const toggleButton = document.createElement('button');
+        toggleButton.classList.add('toggle-button');
+        toggleButton.textContent = item.done ? 'Not Done' : 'Done';
+        toggleButton.addEventListener('click', () => {
+            state.items[index].done = !state.items[index].done;
+            if (state.items[index].done) {
+                const doneItem = state.items.splice(index, 1)[0];
+                state.items.push(doneItem);
+            }
+            else {
+                const undoneItem = state.items.splice(index, 1)[0];
+                state.items.unshift(undoneItem);
+            }
+            saveStateToLocalStorage(state);
+            render();
+        });
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('remove-button');
+        removeButton.textContent = 'Remove';
+        removeButton.addEventListener('click', () => {
+            state.items.splice(index, 1);
+            saveStateToLocalStorage(state);
+            render();
+        });
+        card.appendChild(toggleButton);
+        card.appendChild(removeButton);
+        container.appendChild(card);
+    });
 }
-
-function createButton(text, onClick) {
-  const button = document.createElement("button");
-  button.textContent = text;
-  button.addEventListener("click", onClick);
-  return button;
-}
-
-function addItemToState(title, description, done = false) {
-  const item = { title, description, done };
-  state.items.push(item);
-  saveStateToLocalStorage(state);
-}
-
-function toggleDone(index) {
-  const item = state.items[index];
-  item.done = !item.done;
-
-  if (item.done) {
-    state.items.splice(index, 1);
+function addItemToState(title, description) {
+    const item = {
+        title,
+        description,
+        done: false,
+    };
     state.items.push(item);
-  } else {
-    state.items.splice(index, 1);
-    state.items.unshift(item);
-  }
-
-  saveStateToLocalStorage(state);
-  render();
+    saveStateToLocalStorage(state);
 }
-
-function removeItem(index) {
-  state.items.splice(index, 1);
-  saveStateToLocalStorage(state);
-  render();
-}
-
 function handleSubmit(event) {
-  event.preventDefault();
-  const title = titleInput.value.trim();
-  const description = descriptionInput.value.trim();
-
-  if (title && description) {
-    addItemToState(title, description);
-    titleInput.value = "";
-    descriptionInput.value = "";
-    render();
-  }
+    event.preventDefault();
+    const titleInput = document.querySelector('#title-input');
+    const descriptionInput = document.querySelector('#description-input');
+    const title = titleInput.value.trim();
+    const description = descriptionInput.value.trim();
+    if (title && description) {
+        addItemToState(title, description);
+        titleInput.value = '';
+        descriptionInput.value = '';
+        render();
+    }
 }
-
-form.addEventListener("submit", handleSubmit);
-
+const form = document.querySelector('.wishlist-form');
+form.addEventListener('submit', handleSubmit);
 const savedState = loadStateFromLocalStorage();
-
 if (savedState) {
-  state.items = savedState.items;
+    state.items = savedState.items;
 }
-
 render();
